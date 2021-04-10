@@ -14,17 +14,25 @@ loadEventListeners();
 // Create a function called loadEventListeners
 
 function loadEventListeners() {
-    // Add Task Event
+    // Add Task Event (1)
     form.addEventListener('submit', addTask)
 
-    // Remove task event 
+    // Remove task event (2)
     taskList.addEventListener('click', removeTask)
+
+    // Clear Task Event (3)
+
+    clearBtn.addEventListener('click', clearTasks)
+
+    // Filter tasks event
+
+    filter.addEventListener('keyup', filterTasks)
 }
 
 
 
 // Add Task
-
+//(1) First Function
 function addTask(e) {
     if (taskInput.value === '') {
         alert('Add a Task')
@@ -73,14 +81,40 @@ function addTask(e) {
 
 // Remove task
 
-
+//  (2) Second function
 function removeTask(e) {
 
     if (e.target.parentElement.classList.contains('delete-item')) {
-
-        console.log(e.target)
+        if (confirm('Are you sure?')) {
+            e.target.parentElement.parentElement.remove();
+        }
     }
 
-    console.log(e.target)
+}
 
+
+
+// Clear Tasks
+
+// (3) Clear Task Function
+
+function clearTasks(e) {
+    // (1) taskList.innerHTML = ''   // This is the first of clearing. You set to an empty string. 
+
+    // Faster 
+    if (confirm('Are you sure you want to clear the task')) {
+        while (taskList.firstChild) {
+            taskList.removeChild(taskList.firstChild);
+        }
+    }
+}
+
+
+
+// Filter tasks 
+
+// (4) Filter Tasks function
+
+function filterTasks(e) {
+    console.log(e)
 }
