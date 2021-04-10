@@ -72,8 +72,8 @@ function addTask(e) {
     taskList.appendChild(li)
 
     // Clear taskinput
-
-    taskInput.value = ''
+    localStorage.setItem('tasks', addTask)
+    // taskInput.value = ''
 
     e.preventDefault();
 }
