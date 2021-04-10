@@ -56,7 +56,7 @@ function addTask(e) {
     // Add class
     link.className = 'delete-item secondary-content';
 
-    console.log(link);
+    //console.log(link);
 
     // Add icon html
 
@@ -71,9 +71,12 @@ function addTask(e) {
 
     taskList.appendChild(li)
 
+    // Store in localStorage
+
+    storeTaskInLocalStorage(taskInput.value);
+
     // Clear taskinput
-    localStorage.setItem('tasks', addTask)
-    // taskInput.value = ''
+    taskInput.value = ''
 
     e.preventDefault();
 }
@@ -128,4 +131,23 @@ function filterTasks(e) {
         }
 
     })
+}
+
+
+// Store Task in Local Storage Function 
+
+//(5) 
+
+function storeTaskInLocalStorage(task) {
+    let tasks;
+    if (localStorage.getItem('tasks') === null) {
+        tasks = [];
+    } else {
+        tasks = JSON.parse(localStorage.getItem('tasks'));
+    }
+
+    tasks.push(task);
+
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+
 }
